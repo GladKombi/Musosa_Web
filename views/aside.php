@@ -24,7 +24,7 @@
         </li>
        
         <li>
-            <a class="nav-link active" href="user.php"><i class="bi bi-person"></i> <span>Demander Don</span></a>
+            <a class="nav-link active" href="user.php"><i class="bi bi-person"></i> <span>Utilisateurs</span></a>
         </li>
 
     </ul>
