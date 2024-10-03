@@ -6,7 +6,7 @@ if (isset($_GET["idperio"])) {
     $req->execute(array($id));
     $select=$req->fetch();
     # URL for updating a prestation per year
-    $url="../models/update/up-prestation.php?idperio=$id";
+    $url="../models/updat/up-prestation.php?idperio=$id";
     $title= "Modification de la période de prestation";
     $btn="Modifier";
 }

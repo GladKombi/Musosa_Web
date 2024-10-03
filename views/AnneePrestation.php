@@ -29,7 +29,7 @@ require_once('../models/select/select-Annee.php');
                     <div class="col-12">
                         <h4 class="text-white">Les Prestations</h4>
                     </div>
-                    <!-- pour afficher les massage  -->
+                    <!-- pour afficher les message  -->
                     <?php
                     if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) { ?>
                         <div class="col-xl-12 mt-3">
@@ -49,11 +49,14 @@ require_once('../models/select/select-Annee.php');
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Montant<span class="text-danger">*</span></label>
-                                        <input required type="text" name="desingation" class="form-control" placeholder="Entrez le montant à payer">
+                                        <input required type="text" name="paquet" class="form-control" placeholder="Entrez le montant à payer"  
+                                        <?php if(isset($_GET["idperio"])) {?>value="<?=$select["paquet"];?>"<?php }?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Part de la Musosa<span class="text-danger">*</span></label>
-                                        <input required type="text" name="desingation" class="form-control" placeholder="Entrez le pourcentage de la part">
+                                        <input required type="text" name="pourcentage" class="form-control" placeholder="Entrez le pourcentage de la part"
+                                        <?php if(isset($_GET["idperio"])) {?>value="<?=$select["pourcentage"];?>"<?php }?>>
+                                        
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
@@ -97,7 +100,7 @@ require_once('../models/select/select-Annee.php');
                                         <td><?= $periode["paquet"] ?> $</td>
                                         <td><?= $periode["pourcentage"] ?> %</td>
                                         <td>
-                                            <a href="prestation.php?idperio=<?= $periode['id'] ?>" class="btn btn-success btn-sm">
+                                            <a href="AnneePrestation.php?AjoutPrest&idperio=<?= $periode['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                         </td>

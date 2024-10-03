@@ -30,7 +30,7 @@ require_once('../models/select/select-Coorporation.php');
                     <div class="col-12">
                         <h4 class="text-white">Les Coorporation</h4>
                     </div>
-                    <!-- pour afficher les massage  -->
+                    <!-- pour afficher les message  -->
                     <?php
                     if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) { ?>
                         <div class="col-xl-12 mt-3">
@@ -50,8 +50,8 @@ require_once('../models/select/select-Coorporation.php');
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-6  col-sm-6 p-3">
                                         <label for="">Nom de la coorpooration<span class="text-danger">*</span></label>
-                                        <input required type="text" name="desingation" class="form-control" placeholder="Entrez le nom de la coorporation" <?php if (isset($_GET['idEnfant'])) { ?>
-                                            value=<?php echo $tab['desingation']; ?> <?php } ?>>
+                                        <input required type="text" name="designation" class="form-control" placeholder="Entrez le nom de la coorporation"
+                                        <?php if(isset($_GET["idcoo"])) {?>value="<?=$select["desingation"];?>"<?php }?>>
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
@@ -84,17 +84,17 @@ require_once('../models/select/select-Coorporation.php');
                             <tbody>
                                 <?php
                                 $n = 0;
-                                while ($idBienfait = $getData->fetch()) {
+                                while ($coorpo = $getData->fetch()) {
                                     $n++;
                                 ?>
                                     <tr>
                                         <th scope="row"><?= $n; ?></th>
-                                        <td><?= $idBienfait["desingation"] ?></td>
+                                        <td><?= $coorpo["desingation"] ?></td>
                                         <td>
-                                            <a href="" class="btn btn-success btn-sm">
+                                             <a href="coorporation.php?AjoutCorp&idcoo=<?= $coorpo['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-coorporation-post.php?idSup=<?=$coorpo['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>

@@ -1,12 +1,12 @@
 <?php
-if (isset($_GET['idBienfait'])) {
+if (isset($_GET['idcoo'])) {
     $id=$_GET["idcoo"];
     $req = $connexion->prepare("SELECT * FROM `coorporation` WHERE id=?");
     $req->execute(array($id));
     $select=$req->fetch();
-    $url="../models/update/up-coorporation.php?idcoo=$id";
-    $titre= "Modification de la coorporation";
-    $bouton="Modifier";
+    $url="../models/updat/up-coorporation.php?idcoo=$id";
+    $title = "Modification de la coorporation";
+    $btn ="Modifier";
 } else {
     # Url du traitement lors de l'enregistrement
     $url = "../models/add/add-Coorporation-post.php";

@@ -1,6 +1,6 @@
 <?php
 include_once("../../connexion/connexion.php");
-if (isset($_POST["valider"])) {
+if (isset($_POST["Valider"])) {
     $annee = date("Y");
     $paquet = htmlspecialchars($_POST["paquet"]);
     $pourcentage = htmlspecialchars($_POST["pourcentage"]);
@@ -8,11 +8,11 @@ if (isset($_POST["valider"])) {
         $req = $connexion->prepare("INSERT INTO `anneeprestation`(`annee`, `paquet`, `pourcentage`) VALUES (?,?,?)");
         $req->execute(array($annee, $paquet, $pourcentage));
         if ($req) {
-            $_SESSION["smg"] = "Enregistrement reussi";
-            header("location:../../views/prestation.php");
+            $_SESSION["msg"] = "Enregistrement reussie";
+            header("location:../../views/AnneePrestation.php");
         }
     } else {
-        $_SESSION["smg"] = "Le paquet et pourcentage doivent etre des entiers";
-        header("location:../../views/prestation.php");
+        $_SESSION["msg"] = "Le paquet et pourcentage doivent etre des entiers";
+        header("location:../../views/AnneePrestation.php");
     }
 }

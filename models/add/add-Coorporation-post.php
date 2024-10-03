@@ -1,22 +1,22 @@
 <?php
 include_once ("../../connexion/connexion.php");
-if (isset($_POST["valider"])) {
-    $desingation = htmlspecialchars($_POST["desingation"]);
+if (isset($_POST["Valider"])) {
+    $designation = htmlspecialchars($_POST["designation"]);
     $statut=0;
     $verification = $connexion->prepare("SELECT * FROM coorporation WHERE desingation=? AND supprimer=?");
-    $verification->execute([$desingation,0]);
+    $verification->execute([$designation,0]);
     $tab = $verification->fetch();
     if ($tab > 0) {
-        $_SESSION["smg"] = 'Cette coorporation existe déjà dans la base de données';
+        $_SESSION["msg"] = 'Cette coorporation existe déjà dans la base de données';
         header("location:../../views/coorporation.php");
     } else {
-    $req = $connexion->prepare("INSERT INTO `coorporation`(`desingation,supprimer`) VALUES (?,?)");
-    $req->execute(array($desingation,$statut));
+    $req = $connexion->prepare("INSERT INTO `coorporation`(desingation,supprimer) VALUES (?,?)");
+    $req->execute(array($designation,$statut));
     if ($req) {
-        $_SESSION["smg"] = "Enregistrement reussi";
+        $_SESSION["msg"] = "Enregistrement reussi";
         header("location:../../views/coorporation.php");
     } else {
-        $_SESSION["smg"] = "Echec d'enregistrement";
+        $_SESSION["msg"] = "Echec d'enregistrement";
         header("location:../../views/coorporation.php");
     }
 }
