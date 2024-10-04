@@ -44,20 +44,23 @@ require_once('../models/select/select-services.php');
                     if (isset($_GET['AjoutServic'])) {
                     ?>
                         <div class="col-xl-12 mt-3">
-                            <form action="<?= $url ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
+                            <form action="<?= $url ?>" method="POST" class="shadow p-3">
                                 <h4 class="text-center"><?= $title ?></h4>
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Designation<span class="text-danger">*</span></label>
-                                        <input required type="text" name="desingation" class="form-control" placeholder="Entrez le montant à payer">
+                                        <input required type="text" name="desingation" class="form-control" placeholder="Entrez le montant à payer"
+                                        <?php if(isset($_GET["idService"])) {?>value="<?=$select["desingation"];?>"<?php }?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Tarification plafond<span class="text-danger">*</span></label>
-                                        <input required type="text" name="tarif" class="form-control" placeholder="Entrez le arif plafond">
+                                        <input required type="text" name="tarifplafond" class="form-control" placeholder="Entrez le arif plafond"
+                                        <?php if(isset($_GET["idService"])) {?>value="<?=$select["tarifplafond"];?>"<?php }?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Part de la Musosa<span class="text-danger">*</span></label>
-                                        <input required type="text" name="partMuso" class="form-control" placeholder="Entrez le pourcentage de la part">
+                                        <input required type="text" name="partmusosa" class="form-control" placeholder="Entrez le pourcentage de la part"
+                                        <?php if(isset($_GET["idService"])) {?>value="<?=$select["partmusosa"];?>"<?php }?>>
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
@@ -101,10 +104,10 @@ require_once('../models/select/select-services.php');
                                         <td><?= $service["tarifplafond"] ?> $</td>
                                         <td><?= $service["partmusosa"] ?> $</td>
                                         <td>
-                                            <a href="" class="btn btn-success btn-sm">
+                                            <a href="services.php?AjoutServic&idService=<?= $service['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-service-post.php?idSup=<?=$service['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>

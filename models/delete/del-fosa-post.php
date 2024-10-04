@@ -8,10 +8,10 @@ if (isset($_GET['idSup']) && !empty($_GET['idSup'])) {
   $resultat = $req->execute([$supprimer, $id]);
 
   if ($resultat == true) {
-    $_SESSION['msg'] = "Suppression réussie";
+    $_SESSION['msg'] = "Suppression réussie !";
     header("location:../../views/fosa.php");
   } else {
-    $_SESSION['msg'] = "Echec de la suppression";
+    $_SESSION['msg'] = "Echec de la suppression !";
     header("location:../../views/fosa.php");
   }
 } else {

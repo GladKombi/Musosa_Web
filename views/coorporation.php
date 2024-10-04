@@ -10,7 +10,7 @@ require_once('../models/select/select-Coorporation.php');
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Coorporation</title>
+    <title>Coorporations</title>
     <?php require_once('style.php') ?>
 
 </head>
@@ -28,7 +28,7 @@ require_once('../models/select/select-Coorporation.php');
             <div class="main-content">
                 <div class="row">
                     <div class="col-12">
-                        <h4 class="text-white">Les Coorporation</h4>
+                        <h4 class="text-white">Les Coorporations</h4>
                     </div>
                     <!-- pour afficher les message  -->
                     <?php

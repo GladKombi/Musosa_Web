@@ -13,10 +13,10 @@ if (isset($_POST["Valider"])) {
     $req = $connexion->prepare("INSERT INTO `coorporation`(desingation,supprimer) VALUES (?,?)");
     $req->execute(array($designation,$statut));
     if ($req) {
-        $_SESSION["msg"] = "Enregistrement reussi";
+        $_SESSION["msg"] = "Enregistrement reussi !";
         header("location:../../views/coorporation.php");
     } else {
-        $_SESSION["msg"] = "Echec d'enregistrement";
+        $_SESSION["msg"] = "Echec d'enregistrement !";
         header("location:../../views/coorporation.php");
     }
 }
