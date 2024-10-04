@@ -1,6 +1,6 @@
 <?php
 include_once("../../connexion/connexion.php");
-if (isset($_POST["valider"])) {
+if (isset($_POST["Valider"])) {
     $id = $_GET["idperio"];
     $paquet = htmlspecialchars($_POST["paquet"]);
     $pourcentage = htmlspecialchars($_POST["pourcentage"]);
@@ -8,18 +8,18 @@ if (isset($_POST["valider"])) {
         $req = $connexion->prepare("UPDATE `anneeprestation` SET `paquet`=?,`pourcentage`=? WHERE id=?");
         $req->execute(array($paquet, $pourcentage, $id));
         if ($req) {
-            $_SESSION["smg"] = "Enregistrement reussi";
-            header("location:../../views/prestation.php");
+            $_SESSION["msg"] = "Enregistrement reussi";
+            header("location:../../views/AnneePrestation.php");
         } else {
-            $_SESSION["smg"] = "Echec d'enregistrement";
-            header("location:../../views/prestation.php");
+            $_SESSION["msg"] = "Echec d'enregistrement";
+            header("location:../../views/AnneePrestation.php");
         }
     } else {
         $smg = "Le paquet et pourcentage doivent etre des entiers !";
-        $_SESSION['smg'] = $smg;
-        header("location:../../views/prestation.php");
+        $_SESSION['msg'] = $smg;
+        header("location:../../views/AnneePrestation.php");
     }
 } else {
     // # Redirection security
-    header("location:../../views/prestation.php");
+    header("location:../../views/AnneePrestation.php");
 }
