@@ -131,7 +131,7 @@ include '../connexion/connexion.php';
                                             <td><?= $compte["nom"] . " " . $compte["postnom"] ?></td>
                                             <td><?= $compte["tel"] ?></td>
                                             <td><?= $compte["coorporation"] ?></td>
-                                            <td> <img src="../photo/<?= $compte["photo"] ?>" class="rounded-circle mt-2" width="65px" height="60px"></td>
+                                            <td> <img src="../photo/<?= $compte["photo"] ?>" class="rounded-circle mt-2" width="50px" height="50px"></td>
 
                                             <td>
                                                 <a href="cotisation.php?idcot=<?= $compte['matricule'] ?>" class="btn btn-success btn-sm">
