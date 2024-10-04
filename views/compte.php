@@ -44,47 +44,76 @@ require_once('../fonction/function.php');
                     if (isset($_GET['AjoutCompt'])) {
                     ?>
                         <div class="col-xl-12 ">
-                            <h4 class="text-center"><?= $title ?></h4>
-                            <form action="<?= $url ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
+                            <h4 class="text-center"><?= $titre?></h4>
+                            <form action="<?= $action ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Nom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="nom" class="form-control" placeholder="Entrez le nom" <?php if (isset($_GET['idCompte'])) { ?>
-                                            value=<?php echo $tab['nom']; ?> <?php } ?>>
+                                        <input required type="text" class="form-control" placeholder="Entrez le nom"  name="nom" <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["nom"]; ?>" <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Postnom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="postnom" class="form-control" placeholder="Entrez le postnom" <?php if (isset($_GET['idCompte'])) { ?>
-                                            value=<?php echo $tab['postnom']; ?> <?php } ?>>
+                                        <input required type="text" class="form-control" placeholder="Entrez le postnom"  name="postnom" <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["postnom"]; ?>" <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Prenom <span class="text-danger">*</span></label>
-                                        <input required type="text" name="prenom" class="form-control" placeholder="Entrez le prenom" <?php if (isset($_GET['idCompte'])) { ?>
-                                            value=<?php echo $tab['prenom']; ?> <?php } ?>>
+                                        <input required type="text" class="form-control" placeholder="Entrez le prenom" name="prenom" <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["prenom"]; ?>" <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Genre <span class="text-danger">*</span></label>
                                         <select required id="" name="genre" class="form-control select2">
-                                            <?php if (isset($_GET['idCompte'])) {
-                                                $genre = $tab['genre'];
-                                            ?>
-                                                <option value="Masculin">Masculin</option>
-                                                <option <?php if ($genre == "Feminin") { ?> Selected <?php } ?>value="Feminin">Feminin</option>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <option desabled>Choisir un genre</option>
-                                                <option value="Masculin">Masculin</option>
-                                                <option value="Feminin">Feminin</option>
-                                            <?php
-                                            }
-                                            ?>
+                                        <?php 
+                                    if(isset($_GET['idcompte'])){ 
+                                        ?>
+                                            
+                                              <?php if($select['genre']=='Masculin')
+                                              {?> 
+                                               <option value="Masculin" Selected>Masculin</option>
+                                               <option value="Feminin">Feminin</option>
+
+
+                                    <?php     }
+                                        else {
+                                              ?>  
+                                            <option value="Masculin" >Masculin</option>
+                                            <option value="Feminin" Selected>Feminin</option>
+
+                                        <?php }
+                                    }else{ 
+                                        ?>
+                                            <option value="" desabled>Choisir un genre</option>
+                                            <option value="Masculin">Masculin</option>
+                                            <option value="Feminin">Feminin</option>
+                                        <?php  
+                                    } 
+                                ?>
                                         </select>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                        <label for="">Num Tél <span class="text-danger">*</span></label>
+                                        <input required type="text" class="form-control" placeholder="Entrez le Num Tél" name="tel"
+                                                <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["tel"]; ?>" <?php } ?>>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                        <label for="">Adresse <span class="text-danger">*</span></label>
+                                        <input required type="text" class="form-control" placeholder="Adresse" name="adresse"
+                                                <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["adresse"]; ?>"
+                                                <?php } ?>>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                        <label for="">Paroisse <span class="text-danger">*</span></label>
+                                        <input required type="text" class="form-control" placeholder="Entrez la Paroisse" name="paroisse"
+                                                <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["paroisse"]; ?>" <?php } ?>>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                        <label for="">Zone de Sante <span class="text-danger">*</span></label>
+                                        <input required type="text" class="form-control" placeholder="Entrez la Zone de Sante" name="zonesante"
+                                                <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["zonesante"]; ?>" <?php } ?>>
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Etat Civile <span class="text-danger">*</span></label>
-                                        <select required id="" name="etatCivil" class="form-control select2">
+                                        <select required id="" name="etatcivil" class="form-control select2">
                                             <?php if (isset($_GET['idCompte'])) {
                                                 $genre = $tab['genre'];
                                             ?>
@@ -93,7 +122,7 @@ require_once('../fonction/function.php');
                                             <?php
                                             } else {
                                             ?>
-                                                <option value="Celibataire">Masculin</option>
+                                                <option value="Celibataire">Celibataire</option>
                                                 <option value="Marie">Marié(e)</option>
                                             <?php
                                             }
@@ -102,36 +131,54 @@ require_once('../fonction/function.php');
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Corporation <span class="text-danger">*</span></label>
-                                        <select required name="enfant" id="" class="form-control select2">
-                                            <?php
-                                            $rep->execute([$statut]);
-                                            while ($Coorp = $rep->fetch()) {
-                                            ?>
-                                                <option value="<?php echo $Coorp['id']; ?>">
-                                                    <?php echo  $Coorp['desingation']; ?>
-                                                </option>
-                                            <?php }
+                                        <select required name="coorporation" id="" class="form-control select2">
+                                          <?php if (isset($id)) {
+                                              $req = $connexion->prepare("SELECT * from coorporation WHERE supprimer!=1");
+                                              $req->execute();
+                                              while ($coorp = $req->fetch()) {
+                                          ?>
 
-                                            ?>
+                                          <option <?php if ($coorp['id'] == $select['coorporation']) { ?> selected
+                                                  value="<?php echo $coorp['id'] ?>">
+                                                      <?php echo $coorp['desingation'];
+                                                  } else { ?>
+                                                      value="<?php echo $coorp['id'] ?>"><?php echo $coorp['desingation'];
+                                                  } ?>
+                                          </option>
+
+                                      <?php } ?>
+
+
+                                      <?php
+                                      } else {
+                                      $req = $connexion->prepare("SELECT * from coorporation WHERE supprimer!=1");
+                                      $req->execute();
+                                      while ($coorp= $req->fetch()) {
+                                          ?>
+                                          <option value="<?php echo $coorp['id'] ?>">
+                                          <?php echo $coorp['desingation'] ?>
+                                          </option>
+                                      <?php }
+                                      } ?>
                                         </select>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Date de naissance <span class="text-danger">*</span></label>
-                                        <input required type="Date" name="DateNaissance" class="form-control" <?php if (isset($_GET['idCompte'])) { ?>
-                                            value=<?php echo $tab['age']; ?> <?php } ?>>
+                                        <input required type="Date"  class="form-control" placeholder="date..."
+                                                name="datenaissance" <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["datenaissance"]; ?>" <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Lieu de naissance <span class="text-danger">*</span></label>
-                                        <input required type="text" name="lieuNais" class="form-control" placeholder="Entrez le prenom" <?php if (isset($_GET['idCompte'])) { ?>
-                                            value=<?php echo $tab['lieu']; ?> <?php } ?>>
+                                        <input required type="text" class="form-control"placeholder="lieu..."
+                                                name="lieunaissance" <?php if (isset($_GET["idcompte"])) { ?>value="<?= $select["lieunaissance"]; ?>" <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Profil du membre <span class="text-danger">*</span></label>
-                                        <input required type="file" name="photo" class="form-control" placeholder="Choisir la photo de l'eleve" <?php if (isset($_GET['idCompte'])) { ?>
-                                            value=<?php echo $tab['photo']; ?> <?php } ?>>
+                                        <input required type="file" name="photo" class="form-control"<?php if (isset($_GET['idcompte'])) { ?>
+                                            value=<?php echo $select['photo']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
-                                        <input type="submit" name="Valider" class="btn btn-success w-100" value="<?= $btn ?>">
+                                        <button class="btn btn-success w-100" name="valider"><?= $bouton ?></button>
                                     </div>
                                 </div>
                             </form>
@@ -157,6 +204,8 @@ require_once('../fonction/function.php');
                                     <th>Genre</th>
                                     <th>Tel</th>
                                     <th>Adresse</th>
+                                    <th>Paroisse</th>
+                                    <th>Zone de Sante</th>
                                     <th>Etat Civil</th>
                                     <th>Coorporation</th>
                                     <th>Lieu naissance</th>
@@ -169,7 +218,7 @@ require_once('../fonction/function.php');
                             <tbody>
                                 <?php
                                 $n = 0;
-                                $req = $connexion->prepare("SELECT  membre.`matricule`, membre.`nom`, membre.`postnom`, membre.`genre`, membre.`tel`, membre.`adresse`, membre.`etatcivil`, coorporation.desingation AS coorporation, 
+                                $req = $connexion->prepare("SELECT  membre.`matricule`, membre.`nom`, membre.`postnom`,membre.`prenom`, membre.`genre`, membre.`tel`, membre.`adresse`, membre.`paroisse`, membre.`zonesante`, membre.`etatcivil`, coorporation.desingation AS coorporation, 
                                 membre.`lieunaissance`, membre.`datenaissance`, membre.`photo`, membre.`date`, membre.`supprimer` FROM `membre`,coorporation WHERE membre.coorporation=coorporation.id AND membre.supprimer=0");
                                 $req->execute();
                                 while ($compte = $req->fetch()) {
@@ -178,18 +227,20 @@ require_once('../fonction/function.php');
                                     <tr>
                                         <td><?= $n; ?></td>
                                         <td><?= $compte["matricule"] ?></td>
-                                        <td><?= $compte["nom"] . " " . $compte["postnom"] ?></td>
+                                        <td><?= $compte["nom"] . " " . $compte["postnom"] . " " . $compte["prenom"]?></td>
                                         <td><?= $compte["genre"] ?></td>
                                         <td><?= $compte["tel"] ?></td>
                                         <td><?= $compte["adresse"] ?></td>
+                                        <td><?= $compte["paroisse"] ?></td>
+                                        <td><?= $compte["zonesante"] ?></td>
                                         <td><?= $compte["etatcivil"] ?></td>
                                         <td><?= $compte["coorporation"] ?></td>
                                         <td><?= $compte["lieunaissance"] ?></td>
                                         <td><?= $compte["datenaissance"] ?></td>
-                                        <td> <img src="../photo/<?= $compte["photo"] ?>" class="rounded-circle mt-2" width="75px" height="70px"></td>
+                                        <td> <img src="../photo/<?= $compte["photo"] ?>" class="rounded-circle mt-2" width="50px" height="50px"></td>
                                         <td><?= $compte["date"] ?></td>
                                         <td>
-                                            <a href="compte.php?idcompte=<?= $compte['matricule'] ?>" class="btn btn-success btn-sm">
+                                            <a href="compte.php?AjoutCompt&idcompte=<?= $compte['matricule'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a href="beneficiaire.php?idtit=<?= $compte['matricule'] ?>" class="btn btn-info btn-sm mt-1">
