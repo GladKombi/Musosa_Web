@@ -45,13 +45,13 @@ require_once('../models/select/select-Fosa.php');
                     if (isset($_GET['AjoutFosa'])) {
                     ?>
                         <div class="col-xl-12 mt-3">
-                            <form action="<?= $url ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
+                            <form action="<?= $url ?>" method="POST" class="shadow p-3">
                                 <h4 class="text-center"><?= $title ?></h4>
-                                <div class="row">
+                                <div class="row">                                    
                                     <div class="col-xl-12 col-lg-12 col-md-6  col-sm-6 p-3">
                                         <label for="">intituler<span class="text-danger">*</span></label>
-                                        <input required type="text" name="desingation" class="form-control" placeholder="Entrez l'intituler de la fosa" <?php if (isset($_GET['idFosa'])) { ?>
-                                            value=<?php echo $tab['desingation']; ?> <?php } ?>>
+                                        <input required type="text" name="designation" class="form-control" placeholder="Entrez le nom de la coorporation"
+                                        <?php if(isset($_GET["idFosa"])) {?>value="<?=$select["desingation"];?>"<?php }?>>
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
@@ -93,10 +93,10 @@ require_once('../models/select/select-Fosa.php');
                                         <th scope="row"><?= $n; ?></th>
                                         <td><?= $fosa["desingation"] ?></td>
                                         <td>
-                                            <a href="" class="btn btn-success btn-sm">
+                                            <a href="Fosa.php?AjoutFosa&idFosa=<?= $fosa['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="" class="btn btn-danger btn-sm mt-1">
+                                            <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/del-fosa-post.php?idSup=<?=$fosa['id'] ?>" class="btn btn-danger btn-sm mt-1">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>

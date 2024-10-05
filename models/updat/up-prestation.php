@@ -8,10 +8,10 @@ if (isset($_POST["Valider"])) {
         $req = $connexion->prepare("UPDATE `anneeprestation` SET `paquet`=?,`pourcentage`=? WHERE id=?");
         $req->execute(array($paquet, $pourcentage, $id));
         if ($req) {
-            $_SESSION["msg"] = "Enregistrement reussi";
+            $_SESSION["msg"] = "Modification reussi !";
             header("location:../../views/AnneePrestation.php");
         } else {
-            $_SESSION["msg"] = "Echec d'enregistrement";
+            $_SESSION["msg"] = "Echec de modification !";
             header("location:../../views/AnneePrestation.php");
         }
     } else {

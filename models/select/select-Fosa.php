@@ -1,12 +1,12 @@
 <?php
-if (isset($_GET["idfosa"])) {
-    $id = $_GET["idfosa"];
+if (isset($_GET["idFosa"])) {
+    $id = $_GET["idFosa"];
     # Selection of Fosa registed in BD
     $req = $connexion->prepare("SELECT * FROM fosa WHERE id=?");
     $req->execute(array($id));
     $select = $req->fetch();
     # URL for updating Fosa
-    $url = "../models/update/up-fosa.php?idfosa=$id";
+    $url = "../models/updat/up-fosa.php?idFosa=$id";
     $title = "Modification de la fosa";
     $btn = "Modifier";
 } else {

@@ -8,12 +8,12 @@ if (isset($_GET['idSup']) && !empty($_GET['idSup'])) {
   $resultat = $req->execute([$supprimer, $id]);
 
   if ($resultat == true) {
-    $_SESSION['msg'] = "Suppression réussie";
-    header("location:../../views/service.php");
+    $_SESSION['msg'] = "Suppression réussie !";
+    header("location:../../views/services.php");
   } else {
-    $_SESSION['msg'] = "Echec de la suppression";
-    header("location:../../views/service.php");
+    $_SESSION['msg'] = "Echec de la suppression !";
+    header("location:../../views/services.php");
   }
 } else {
-  header("location:../../views/service.php");
+  header("location:../../views/services.php");
 }

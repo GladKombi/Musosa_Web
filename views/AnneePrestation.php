@@ -10,7 +10,7 @@ require_once('../models/select/select-Annee.php');
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>AnneePrestation</title>
+    <title>Annee Prestation</title>
     <?php require_once('style.php') ?>
 </head>
 
