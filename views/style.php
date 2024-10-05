@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="../assets/modules/summernote/summernote-bs4.css">
   <link rel="stylesheet" href="../assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="../assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">
-  <link rel="stylesheet" href="assets/modules/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../assets/modules/ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="../assets/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/modules/bootstrap-social/bootstrap-social.css">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/style.css">
