@@ -27,16 +27,16 @@ if (isset($_POST["valider"])) {
     $verification->execute(array($nom, $postnom, $tel, $supprimer));
     $tab = $verification->fetch();
     if ($tab > 0) {
-        $_SESSION["smg"] = 'Cet utilisateur existe dejà dans la base de données';
+        $_SESSION["msg"] = 'Cet utilisateur existe dejà dans la base de données';
         header("location:../../views/user.php");
     } else {
         $req = $connexion->prepare("INSERT INTO `user`( `nom`, `postnom`, `genre`, `tel`, `adresse`, `username`, `pwd`, `fonction`, `photo`, `date`, `supprimer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
         $req->execute(array($nom, $postnom, $genre, $tel, $adresse, $username, $pwd, $fonction, $photo, $date, $supprimer));
         if ($req) {
-            $_SESSION["smg"] = "Enregistrement reussi";
+            $_SESSION["msg"] = "Enregistrement reussi";
             header("location:../../views/user.php");
         } else {
-            $_SESSION["smg"] = "Echec d'enregistrement";
+            $_SESSION["msg"] = "Echec d'enregistrement";
             header("location:../../views/user.php");
         }
     }

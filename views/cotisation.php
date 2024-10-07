@@ -1,6 +1,7 @@
 <?php
 # Se connecter à la BD
 include '../connexion/connexion.php';
+require_once ("../models/select/select-cotisation.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,16 +43,16 @@ include '../connexion/connexion.php';
                         ?>
                         <!-- Le formulaire pour entreer une nouvelle cotisation du membres -->
                         <div class="col-xl-12 mt-3">                            
-                            <form action="" method="POST" class="shadow p-3">
-                            <h4 class="text-center">Nouvelle cotisation</h4>
+                        <h4 class="text-center"><?= $titre ?></h4>
+                            <form action="<?= $action ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-6  col-sm-6 p-3">
                                         <label for="">Montant<span class="text-danger">*</span></label>
-                                        <input required type="text" name="desingation" class="form-control" placeholder="Entrez le montant">
+                                        <input required type="text" name="montant" class="form-control" placeholder="Entrez le montant">
                                     </div>
                                                                        
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
-                                        <input type="submit" name="Valider" class="btn btn-success w-100" value="Enregistrer">
+                                        <input type="submit" name="valider" class="btn btn-success w-100" value="Enregistrer">
                                     </div>
                                 </div>
                             </form>
