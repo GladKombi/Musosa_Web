@@ -60,17 +60,17 @@ if (isset($_POST["valider"])) {
             $req = $connexion->prepare("INSERT INTO `cotisation`(matTitilaire,matBeneficiaire,montant,anneeprestation,date) VALUES (?,?,?,?,?)");
             $req->execute(array($titulaire, $matriculeBen, $reste, $annee, $date));
             if ($req) {
-                $_SESSION["smg"] = "Enregistrement reussi";
-                header("location:../../views/cotisation.php");
+                $_SESSION["msg"] = "Enregistrement reussi";
+                header("location:../../views/cotisation.php?idcot=$titulaire");
             } else {
-                $_SESSION["smg"] = "Echec d'enregistrement";
-                header("location:../../views/cotisation.php");
+                $_SESSION["msg"] = "Echec d'enregistrement";
+                header("location:../../views/cotisation.php?idcot=$titulaire");
             }
         } else {
             echo 'tout payer';
-            $_SESSION["smg"] = "le montant a remetre est de " . $montant;
+            $_SESSION["msg"] = "le montant a remetre est de " . $montant;
             $montant = 0;
-            header("location:../../views/cotisation.php");
+            header("location:../../views/cotisation.php?idcot=$titulaire");
         }
     }
 }

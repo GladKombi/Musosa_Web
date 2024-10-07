@@ -45,43 +45,78 @@ require_once('../models/select/select-Users.php');
                     if (isset($_GET['AjoutUser'])) {
                     ?>
                         <div class="col-xl-12 mt-3">
-                            <form action="" class="shadow p-3">
+                        <form action="<?= $url ?>" method="POST" class="shadow p-3" enctype="multipart/form-data">
+                                <h4 class="text-center"><?= $title ?></h4>
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Nom <span class="text-danger">*</span></label>
-                                        <input required type="text" class="form-control" placeholder="Entrez le nom">
+                                        <input required type="text" class="form-control" placeholder="Entrez le nom"name="nom" <?php if (isset($_GET["iduser"])) { ?>value="<?= $select["nom"]; ?>" <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Postnom <span class="text-danger">*</span></label>
-                                        <input required type="text" class="form-control" placeholder="Entrez le postnom">
+                                        <input required type="text" class="form-control" placeholder="Entrez le postnom"name="postnom" <?php if (isset($_GET["iduser"])) { ?>value="<?= $select["postnom"]; ?>" <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Genre <span class="text-danger">*</span></label>
-                                        <select required id="" name="genre" class="form-select">
-                                            <option desabled>Choisir votre genre</option>
+                                        <select required id="" name="genre" class="form-control select2">
+                                        <?php 
+                                    if(isset($_GET['iduser'])){ 
+                                        ?>
+                                            
+                                              <?php if($select['genre']=='Masculin')
+                                              {?> 
+                                               <option value="Masculin" Selected>Masculin</option>
+                                               <option value="Feminin">Feminin</option>
+
+
+                                    <?php     }
+                                        else {
+                                              ?>  
+                                            <option value="Masculin" >Masculin</option>
+                                            <option value="Feminin" Selected>Feminin</option>
+
+                                        <?php }
+                                    }else{ 
+                                        ?>
+                                            <option value="" desabled>Choisir un genre</option>
                                             <option value="Masculin">Masculin</option>
                                             <option value="Feminin">Feminin</option>
+                                        <?php  
+                                    } 
+                                ?>
+
                                         </select>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Fonction <span class="text-danger">*</span></label>
-                                        <select required id="" name="fonction" class="form-select">
-                                            <option value="" desabled>Choisir une fonction</option>
-                                            <option value="1">Administrateur</option>
-                                            <option value="2">Comptable</option>
-                                            <option value="3">Secretaire</option>
-                                        </select>
+                                        <select required name="fonction" id="" class="form-control select2">
+                                       
+                                            <option value="">Choisir la fonction</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Secretaire">Secretaire</option>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Numero de telephone<span class="text-danger">*</span></label>
-                                        <input required type="text" class="form-control" placeholder="EX: +243997019883">
+                                        <input required type="text" class="form-control" placeholder="EX: +243997019883"name="tel"
+                                                <?php if (isset($_GET["iduser"])) { ?>value="<?= $select["tel"]; ?>" <?php } ?>>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                        <label for="">Adresse <span class="text-danger">*</span></label>
+                                        <input required type="text" class="form-control" placeholder="Adresse" name="adresse"
+                                                <?php if (isset($_GET["iduser"])) { ?>value="<?= $select["adresse"]; ?>"
+                                                <?php } ?>>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Mot de passe <span class="text-danger">*</span></label>
-                                        <input required type="text" class="form-control" placeholder="Entrez le mot de pass">
+                                        <input required type="password" class="form-control" placeholder="Entrez le mot de pass" name="pwd">
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                        <label for="">Profil <span class="text-danger">*</span></label>
+                                        <input required type="file" class="form-control" name="photo"<?php if (isset($_GET["iduser"])) { ?>
+                                            value=<?php echo $select['photo']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-4 col-sm-6 p-3">
-                                        <input type="submit" class="btn btn-success w-100" value="Enregistrer">
+                                    <button class="btn btn-success w-100" name="valider"><?=  $btn ?></button>
                                     </div>
                                 </div>
                             </form>
@@ -135,7 +170,7 @@ require_once('../models/select/select-Users.php');
                                         <td> <img src="../photo/<?= $user["photo"] ?>" class="rounded-circle mt-2" width="65px" height="60px"></td>
                                         <td><?= $user["date"] ?></td>
                                         <td>
-                                            <a href="user.php?iduser=<?= $user['id'] ?>" class="btn btn-success btn-sm">
+                                            <a href="user.php?AjoutUser&iduser=<?= $user['id'] ?>" class="btn btn-success btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a href="../models/delete/del-user-post.php?idSup=<?=$user['id'] ?>" class="btn btn-danger btn-sm mt-1">

@@ -151,7 +151,7 @@ require_once('../fonction/function.php');
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                                         <label for="">Profil du membre <span class="text-danger">*</span></label>
-                                        <input required type="file" name="photo" class="form-control"<?php if (isset($_GET["idben"])) { ?>
+                                        <input required type="file"  class="form-control" name="photo"<?php if (isset($_GET["idben"])) { ?>
                                             value=<?php echo $select['photo']; ?> <?php } ?>>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
