@@ -1,3 +1,7 @@
+<?php
+    include '../connexion/connexion.php';
+    include_once('../models/select/select-profil.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,20 +9,19 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Users_Profile </title>
+  <title>Users_Profile</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <?php require_once('style.php'); ?>
-
 </head>
 
 <body>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg"></div>
-      <?php require_once('navbar.php') ?>
+      <?php require_once('navbar.php'); ?>
       <div class="main-sidebar sidebar-style-2">
-        <?php require_once('aside.php') ?>
+        <?php require_once('aside.php'); ?>
       </div>
 
       <!-- Main Content -->
@@ -28,10 +31,8 @@
             <h1>Profile</h1>
           </div>
           <div class="section-body">
-            <h2 class="section-title">Glad Kombi</h2>
-            <p class="section-lead">
-              Voulez-vous change une information dans votre profil ??
-            </p>
+            <h2 class="section-title"><?php echo htmlspecialchars($_SESSION['noms']); ?></h2>
+            <p class="section-lead">Voulez-vous changer une information dans votre profil ??</p>
 
             <div class="row mt-sm-4">
               <div class="col-12 col-md-12 col-lg-5">
@@ -48,20 +49,22 @@
                         <div class="profile-widget-item-value">6,8K</div>
                       </div>
                       <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Beneficiaire</div>
+                        <div class="profile-widget-item-label">Bénéficiaire</div>
                         <div class="profile-widget-item-value">2,1K</div>
                       </div>
                     </div>
                   </div>
                   <div class="profile-widget-description">
-                    <div class="profile-widget-name">Glad Kombi<div class="text-muted d-inline font-weight-normal">
+                    <div class="profile-widget-name">
+                      <?php echo htmlspecialchars($_SESSION['noms']); ?>
+                      <div class="text-muted d-inline font-weight-normal">
                         <div class="slash"></div> Web Developer
                       </div>
                     </div>
-                    Glad Kombi is a superhero name in <b>Web developpement</b>, especially in HTML and CSS. He is not a fictional character but an original hero in my family, a hero for his children and for his wife.
+                    Glad Kombi est un super-héros dans le <b>développement web</b>, notamment en HTML et CSS. Ce n'est pas un personnage fictif, mais un héros pour sa famille, ses enfants et sa femme.
                   </div>
                   <div class="card-footer text-center">
-                    <div class="font-weight-bold mb-2">Follow Glad Kombi</div>
+                    <div class="font-weight-bold mb-2">Suivez Glad Kombi</div>
                     <a href="#" class="btn btn-social-icon btn-facebook mr-1">
                       <i class="fab fa-facebook-f"></i>
                     </a>
@@ -77,49 +80,80 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                  <form method="post" class="needs-validation" novalidate="">
+                  <form method="POST" enctype="multipart/form-data" action="../models/updat/up-profil-post.php?idMod=<?php echo $_SESSION['id'] ?? $_SESSION['titulaire']; ?>">
                     <div class="card-header">
                       <h4>Modifiez votre Profil</h4>
                     </div>
+                     <!-- pour afficher les message  -->
+                     <?php
+                    if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) { ?>
+                        <div class="col-xl-12 mt-3">
+                            <div class="alert-info alert text-center"><?= $_SESSION['msg'] ?></div>
+                        </div>
+                    <?php }
+                    #Cette ligne permet de vider la valeur qui se trouve dans la session message
+                    unset($_SESSION['msg']);
+                    ?>
                     <div class="card-body">
                       <div class="row">
                         <div class="form-group col-md-6 col-12">
                           <label>Nom</label>
-                          <input type="text" class="form-control" placeholder="Glad" required="">
+                          <input type="text" name="nom" class="form-control" placeholder="Glad" required value="<?php echo htmlspecialchars($_nom ?? ''); ?>">
                           <div class="invalid-feedback">
-                            Veillez saisir ici votre nom svp !
+                            Veuillez saisir ici votre nom svp !
                           </div>
                         </div>
                         <div class="form-group col-md-6 col-12">
                           <label>Postnom</label>
-                          <input type="text" class="form-control" placeholder="Kombi" required="">
+                          <input type="text" name="postnom" class="form-control" placeholder="Kombi" required value="<?php echo htmlspecialchars($_postnom ?? ''); ?>">
                           <div class="invalid-feedback">
-                            Veillez saisir ici votre postnom svp !
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="form-group col-md-7 col-12">
-                          <label>Email</label>
-                          <input type="email" class="form-control" placeholder="Gladkombi@Musosa.com" required="">
-                          <div class="invalid-feedback">
-                            Veillez saisir ici votre email svp !
-                          </div>
-                        </div>
-                        <div class="form-group col-md-5 col-12">
-                          <label>Numero de telephone</label>
-                          <input type="tel" class="form-control" placeholder="EX:+243997019883" required="">
-                          <div class="invalid-feedback">
-                            Veillez saisir ici votre numero de telephone svp !
+                            Veuillez saisir ici votre postnom svp !
                           </div>
                         </div>
                       </div>
 
+                      <div class="row">
+                        <div class="form-group col-md-7 col-12">
+                          <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Gladkombi@Musosa.com" required value="<?php echo htmlspecialchars($_email ?? ''); ?>">
+                            <div class="invalid-feedback">
+                              Veuillez saisir ici votre email svp !
+                            </div>
+                          <?php endif; ?>
+                        </div>
+
+                        <div class="form-group col-md-6 col-12">
+                          <label>Numéro de téléphone</label>
+                          <input type="text" name="tel" class="form-control" placeholder="EX:+243997019883" required value="<?php echo htmlspecialchars($_telephone ?? ''); ?>">
+                          <div class="invalid-feedback">
+                            Veuillez saisir ici votre numéro de téléphone svp !
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group col-md-6 col-12">
+                          <label>Adresse</label>
+                          <input type="text" name="adresse" class="form-control" placeholder="EX:+243997019883" required value="<?php echo htmlspecialchars($_adresse ?? ''); ?>">
+                          <div class="invalid-feedback">
+                            Veuillez saisir ici votre adresse svp !
+                          </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-12">
+                          <label>Photo</label>
+                          <img src="<?php echo isset($_image) && !empty($_image) ? '../assets/img/profil/' . htmlspecialchars($_image) : ''; ?>" alt="Profile" width="40" height="40">
+                          <input autocomplete="off" name="photo" type="file" class="form-control">
+                        </div>
+                      </div>
                     </div>
+
                     <div class="card-footer text-right">
-                      <button class="btn btn-success">Save Changes</button>
+                      <button class="btn btn-success" name="valider" type="submit">Enregistrer les modifications</button>
                     </div>
                   </form>
                 </div>
@@ -128,11 +162,11 @@
           </div>
         </section>
       </div>
-      <?php require_once('footer.php') ?>
+
+      <?php require_once('footer.php'); ?>
     </div>
   </div>
 
-  <?php require_once('script.php') ?>
+  <?php require_once('script.php'); ?>
 </body>
-
 </html>
