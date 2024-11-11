@@ -83,79 +83,70 @@
 
               <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                  <form method="POST" enctype="multipart/form-data" action="../models/updat/up-profil-post.php?idMod=<?php echo $_SESSION['id'] ?? $_SESSION['titulaire']; ?>">
+                <form method="POST" enctype="multipart/form-data" 
+                      action="../models/updat/up-profil-post.php?idMod=<?php echo $_SESSION['id'] ?? $_SESSION['titulaire']; ?>">
+                    
+                    <!-- Champ caché pour le type d'utilisateur -->
+                    <input type="hidden" name="type" value="<?php echo isset($_SESSION['id']) ? 'user' : 'beneficiaire'; ?>">
+                    
                     <div class="card-header">
-                      <h4>Modifiez votre Profil</h4>
+                        <h4>Modifiez votre Profil</h4>
                     </div>
-                     <!-- pour afficher les message  -->
-                     <?php
-                    if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) { ?>
+
+                    <!-- Affichage des messages de notification -->
+                    <?php if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) { ?>
                         <div class="col-xl-12 mt-3">
                             <div class="alert-info alert text-center"><?= $_SESSION['msg'] ?></div>
                         </div>
-                    <?php }
-                    #Cette ligne permet de vider la valeur qui se trouve dans la session message
-                    unset($_SESSION['msg']);
-                    ?>
+                    <?php } unset($_SESSION['msg']); ?>
+
                     <div class="card-body">
-                      <div class="row">
-                        <div class="form-group col-md-6 col-12">
-                          <label>Nom</label>
-                          <input type="text" name="nom" class="form-control" placeholder="Glad" required value="<?php echo htmlspecialchars($_nom ?? ''); ?>">
-                          <div class="invalid-feedback">
-                            Veuillez saisir ici votre nom svp !
-                          </div>
-                        </div>
-                        <div class="form-group col-md-6 col-12">
-                          <label>Postnom</label>
-                          <input type="text" name="postnom" class="form-control" placeholder="Kombi" required value="<?php echo htmlspecialchars($_postnom ?? ''); ?>">
-                          <div class="invalid-feedback">
-                            Veuillez saisir ici votre postnom svp !
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="form-group col-md-7 col-12">
-                          <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])): ?>
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Gladkombi@Musosa.com" required value="<?php echo htmlspecialchars($_email ?? ''); ?>">
-                            <div class="invalid-feedback">
-                              Veuillez saisir ici votre email svp !
+                        <!-- Champs du formulaire -->
+                        <div class="row">
+                            <div class="form-group col-md-6 col-12">
+                                <label>Nom</label>
+                                <input type="text" name="nom" class="form-control" placeholder="Glad" required 
+                                      value="<?php echo htmlspecialchars($_nom ?? ''); ?>">
+                                <div class="invalid-feedback">Veuillez saisir ici votre nom svp !</div>
                             </div>
-                          <?php endif; ?>
+                            <div class="form-group col-md-6 col-12">
+                                <label>Postnom</label>
+                                <input type="text" name="postnom" class="form-control" placeholder="Kombi" required 
+                                      value="<?php echo htmlspecialchars($_postnom ?? ''); ?>">
+                                <div class="invalid-feedback">Veuillez saisir ici votre postnom svp !</div>
+                            </div>
                         </div>
 
-                        <div class="form-group col-md-6 col-12">
-                          <label>Numéro de téléphone</label>
-                          <input type="text" name="tel" class="form-control" placeholder="EX:+243997019883" required value="<?php echo htmlspecialchars($_telephone ?? ''); ?>">
-                          <div class="invalid-feedback">
-                            Veuillez saisir ici votre numéro de téléphone svp !
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="form-group col-md-6 col-12">
-                          <label>Adresse</label>
-                          <input type="text" name="adresse" class="form-control" placeholder="EX:+243997019883" required value="<?php echo htmlspecialchars($_adresse ?? ''); ?>">
-                          <div class="invalid-feedback">
-                            Veuillez saisir ici votre adresse svp !
-                          </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-12">
+                                <label>Numéro de téléphone</label>
+                                <input type="text" name="tel" class="form-control" placeholder="EX:+243997019883" required 
+                                      value="<?php echo htmlspecialchars($_telephone ?? ''); ?>">
+                                <div class="invalid-feedback">Veuillez saisir ici votre numéro de téléphone svp !</div>
+                            </div>
+                            <div class="form-group col-md-6 col-12">
+                                <label>Adresse</label>
+                                <input type="text" name="adresse" class="form-control" placeholder="EX:+243997019883" required 
+                                      value="<?php echo htmlspecialchars($_adresse ?? ''); ?>">
+                                <div class="invalid-feedback">Veuillez saisir ici votre adresse svp !</div>
+                            </div>
                         </div>
 
-                        <div class="form-group col-md-6 col-12">
-                          <label>Photo</label>
-                          <img src="<?php echo isset($_image) && !empty($_image) ? '../assets/img/profil/' . htmlspecialchars($_image) : ''; ?>" alt="Profile" width="40" height="40">
-                          <input autocomplete="off" name="photo" type="file" class="form-control">
+                        <div class="row">
+                            <div class="form-group col-md-6 col-12">
+                                <label>Photo</label>
+                                <img src="<?php echo isset($_image) && !empty($_image) ? '../assets/img/profil/' . htmlspecialchars($_image) : ''; ?>" 
+                                    alt="Profile" width="40" height="40">
+                                <input autocomplete="off" name="photo" type="file" class="form-control">
+                            </div>
                         </div>
-                      </div>
                     </div>
 
                     <div class="card-footer text-right">
-                      <button class="btn btn-success" name="valider" type="submit">Enregistrer les modifications</button>
+                        <button class="btn btn-success" name="valider" type="submit">Enregistrer les modifications</button>
                     </div>
-                  </form>
+                </form>
+
                 </div>
               </div>
             </div>
