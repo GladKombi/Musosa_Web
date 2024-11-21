@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg main-navbar">
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
@@ -134,8 +135,8 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="assets/img/profil/lad.jpg" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Glad K.</div>
+                <img src="<?php if(isset($_SESSION['image'])){print '../assets/img/profil/'. $_SESSION['image']; } ?>" width="35" height="35" alt="Profile" class="rounded-circle ">
+                <div class="d-sm-none d-lg-inline-block"><?php echo $_SESSION['noms'];?></div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Logged in 5 min ago</div>
@@ -143,7 +144,7 @@
                     <i class="far fa-user"></i> Profile
                 </a>               
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item has-icon text-danger">
+                <a href="logout.php" class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
