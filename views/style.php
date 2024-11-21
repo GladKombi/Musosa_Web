@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="../assets/modules/ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="../assets/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../assets/modules/bootstrap-social/bootstrap-social.css">
+   <!-- Style dataTable -->
+   <link rel="stylesheet" href="../assets/modules/datatables/datatables.min.css">
+  <link rel="stylesheet" href="../assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/style.css">
