@@ -22,6 +22,15 @@
                 <li><a href="services.php">Services</a></li>
             </ul>
         </li>
+
+        <li class="dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="bi bi-people"></i> <span>facturation</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="bon.php">Bon</a></li>
+                <li><a href="episode.php">Episode</a></li>
+                <li><a href="paiement.php">Paiement facture</a></li>
+            </ul>
+        </li>   
        
         <li>
             <a class="nav-link active" href="user.php"><i class="bi bi-person"></i> <span>Utilisateurs</span></a>
